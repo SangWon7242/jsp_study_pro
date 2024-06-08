@@ -30,8 +30,5 @@ public class DispatcherServlet extends HttpServlet {
         memberController.showLogin(rq);
       }
     }
-
-
-    System.out.println(url);
   }
 }

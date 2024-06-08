@@ -1,10 +1,14 @@
 package com.sbs.jsp.board;
 
+import com.sbs.jsp.board.article.Article;
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 
 public class Rq {
   final HttpServletRequest req;
@@ -54,5 +58,20 @@ public class Rq {
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
+  }
+
+  public void setAttr(String key, Object value) {
+    req.setAttribute(key, value);
+  }
+
+  public void view(String path) {
+    RequestDispatcher requestDispatcher = req.getRequestDispatcher("/jsp/" + path + ".jsp");
+
+    try {
+      requestDispatcher.forward(req, resp);
+    } catch (ServletException | IOException e) {
+      throw new RuntimeException(e);
+    }
+
   }
 }
